@@ -4,6 +4,8 @@ import streamlit as st
 import pandas as pd
 import os
 import re
+from dotenv import load_dotenv
+load_dotenv()
 from openai import OpenAI
 import sys, os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
@@ -12,7 +14,8 @@ from agents.agent_profiles import AgentProfile
 
 st.set_page_config(page_title="💉 Vaccine Hesitancy Simulator", layout="wide")
 
-client = OpenAI(api_key="***REMOVED***proj-PWzq-G9ROlKwUyUuyNSScDj9wkucQo3kBNplhNs1E-C-yqzLL534T_8fRJKFwNpk-SIXycScqTT3BlbkFJ2UvedUdXHOd79KzN_BRh5CgQHW7Ke2cueooufmmrL4oxuQY2I5E3IhgMbUQXFoSCgwvn1Yvg4A")
+
+client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
 
 # === Trait Options ===
 education_levels = ["no education", "high school", "bachelor's", "master's", "PhD"]
