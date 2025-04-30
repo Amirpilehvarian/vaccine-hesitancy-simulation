@@ -1,0 +1,11 @@
+openai
+langchain
+pandas
+scikit-learn
+matplotlib
+seaborn
+streamlit
+tqdm
+newspaper3k
+snscrape
+beautifulsoup4
