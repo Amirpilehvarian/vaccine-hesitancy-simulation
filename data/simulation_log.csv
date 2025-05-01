@@ -1,0 +1,101 @@
+education,income,belief,age,personality,response,method
+master's degree,middle-income,anti-vaccine,middle-aged,indifferent,No,auto
+high school,middle-income,anti-vaccine,middle-aged,indifferent,No,auto
+high school,high-income,neutral,middle-aged,indifferent,Yes,auto
+master's degree,middle-income,pro-vaccine,middle-aged,open-minded,Yes,auto
+master's degree,high-income,anti-vaccine,young adult,anxious,No,auto
+bachelor's degree,middle-income,anti-vaccine,senior,indifferent,No,auto
+high school,middle-income,pro-vaccine,senior,open-minded,Yes,auto
+high school,middle-income,anti-vaccine,senior,skeptical,No,auto
+high school,high-income,anti-vaccine,middle-aged,indifferent,No,auto
+high school,middle-income,pro-vaccine,young adult,open-minded,Yes,auto
+master's degree,low-income,neutral,young adult,cautious,Yes,auto
+PhD,high-income,anti-vaccine,young adult,cautious,No,auto
+master's degree,low-income,pro-vaccine,middle-aged,cautious,Yes,auto
+master's degree,middle-income,anti-vaccine,senior,cautious,No,auto
+high school,low-income,anti-vaccine,middle-aged,indifferent,No,auto
+master's degree,low-income,neutral,young adult,anxious,Yes,auto
+high school,low-income,pro-vaccine,young adult,anxious,Yes,auto
+bachelor's degree,middle-income,anti-vaccine,middle-aged,anxious,No,auto
+bachelor's degree,middle-income,anti-vaccine,young adult,cautious,No,auto
+high school,middle-income,neutral,middle-aged,cautious,Yes,auto
+high school,high-income,anti-vaccine,middle-aged,indifferent,No,auto
+master's degree,middle-income,pro-vaccine,young adult,skeptical,Yes,auto
+high school,low-income,anti-vaccine,young adult,indifferent,No,auto
+PhD,middle-income,anti-vaccine,young adult,open-minded,No,auto
+master's degree,high-income,anti-vaccine,young adult,open-minded,No,auto
+college,middle-income,pro-vaccine,middle-aged,skeptical,Yes,auto
+college,high-income,anti-vaccine,young adult,indifferent,No,auto
+college,middle-income,anti-vaccine,senior,open-minded,No,auto
+college,low-income,anti-vaccine,senior,open-minded,No,auto
+college,high-income,anti-vaccine,senior,cautious,No,auto
+master's degree,low-income,neutral,young adult,cautious,Yes,auto
+high school,middle-income,anti-vaccine,young adult,cautious,No,auto
+PhD,low-income,anti-vaccine,middle-aged,cautious,No,auto
+high school,middle-income,neutral,young adult,open-minded,Yes,auto
+bachelor's degree,middle-income,pro-vaccine,young adult,indifferent,Yes,auto
+bachelor's degree,high-income,neutral,young adult,skeptical,Yes,auto
+master's degree,high-income,pro-vaccine,young adult,cautious,Yes,auto
+high school,middle-income,neutral,senior,indifferent,Yes,auto
+master's degree,middle-income,pro-vaccine,young adult,open-minded,Yes,auto
+bachelor's degree,middle-income,pro-vaccine,senior,cautious,Yes,auto
+master's degree,middle-income,neutral,middle-aged,open-minded,Yes,auto
+college,middle-income,pro-vaccine,middle-aged,cautious,Yes,auto
+PhD,low-income,anti-vaccine,senior,open-minded,No,auto
+PhD,low-income,anti-vaccine,young adult,cautious,No,auto
+PhD,middle-income,pro-vaccine,senior,indifferent,Yes,auto
+bachelor's degree,low-income,anti-vaccine,middle-aged,indifferent,No,auto
+college,high-income,pro-vaccine,middle-aged,cautious,Yes,auto
+college,middle-income,anti-vaccine,senior,skeptical,No,auto
+PhD,middle-income,neutral,senior,open-minded,Yes,auto
+PhD,middle-income,anti-vaccine,senior,open-minded,No,auto
+PhD,low-income,pro-vaccine,young adult,cautious,Yes,auto
+college,middle-income,anti-vaccine,middle-aged,anxious,No,auto
+PhD,low-income,neutral,young adult,open-minded,Yes,auto
+college,low-income,neutral,senior,skeptical,No,auto
+college,high-income,anti-vaccine,senior,indifferent,No,auto
+master's degree,middle-income,neutral,middle-aged,skeptical,Yes,auto
+bachelor's degree,middle-income,pro-vaccine,young adult,indifferent,Yes,auto
+PhD,high-income,pro-vaccine,young adult,indifferent,Yes,auto
+high school,high-income,neutral,senior,skeptical,Yes,auto
+PhD,middle-income,anti-vaccine,middle-aged,skeptical,No,auto
+master's degree,low-income,neutral,young adult,indifferent,Yes,auto
+high school,high-income,neutral,middle-aged,indifferent,Yes,auto
+bachelor's degree,low-income,pro-vaccine,young adult,cautious,Yes,auto
+college,low-income,anti-vaccine,middle-aged,skeptical,No,auto
+college,low-income,neutral,middle-aged,indifferent,Yes,auto
+bachelor's degree,low-income,neutral,middle-aged,skeptical,No,auto
+college,high-income,neutral,middle-aged,cautious,Yes,auto
+high school,high-income,neutral,middle-aged,cautious,Yes,auto
+college,low-income,neutral,young adult,cautious,Yes,auto
+college,low-income,neutral,senior,skeptical,Yes,auto
+PhD,high-income,pro-vaccine,young adult,anxious,Yes,auto
+college,high-income,anti-vaccine,senior,cautious,No,auto
+bachelor's degree,low-income,neutral,middle-aged,skeptical,Yes,auto
+college,low-income,neutral,middle-aged,open-minded,Yes,auto
+PhD,low-income,anti-vaccine,senior,open-minded,No,auto
+master's degree,middle-income,pro-vaccine,senior,anxious,Yes,auto
+bachelor's degree,middle-income,anti-vaccine,middle-aged,indifferent,No,auto
+bachelor's degree,middle-income,pro-vaccine,young adult,cautious,Yes,auto
+high school,high-income,anti-vaccine,middle-aged,skeptical,No,auto
+college,high-income,neutral,middle-aged,cautious,Yes,auto
+bachelor's degree,high-income,neutral,senior,cautious,Yes,auto
+college,low-income,anti-vaccine,senior,anxious,No,auto
+high school,high-income,neutral,middle-aged,indifferent,Yes,auto
+high school,low-income,neutral,young adult,cautious,No,auto
+master's degree,middle-income,anti-vaccine,middle-aged,anxious,No,auto
+PhD,middle-income,anti-vaccine,young adult,indifferent,No,auto
+master's degree,low-income,pro-vaccine,senior,skeptical,Yes,auto
+PhD,high-income,anti-vaccine,young adult,skeptical,No,auto
+master's degree,high-income,pro-vaccine,young adult,anxious,Yes,auto
+college,low-income,neutral,middle-aged,open-minded,Yes,auto
+high school,middle-income,pro-vaccine,young adult,skeptical,Yes,auto
+high school,low-income,pro-vaccine,senior,cautious,Yes,auto
+college,middle-income,neutral,senior,cautious,Yes,auto
+bachelor's degree,high-income,anti-vaccine,young adult,skeptical,No,auto
+bachelor's degree,middle-income,anti-vaccine,senior,indifferent,No,auto
+master's degree,middle-income,pro-vaccine,middle-aged,open-minded,Yes,auto
+PhD,low-income,neutral,middle-aged,open-minded,Yes,auto
+bachelor's degree,middle-income,neutral,young adult,indifferent,Yes,auto
+master's degree,high-income,anti-vaccine,senior,skeptical,No,auto
+master's degree,middle-income,anti-vaccine,senior,indifferent,No,auto
