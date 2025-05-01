@@ -18,11 +18,11 @@ class AgentProfile:
                 f"and initially holds a '{self.prior_vaccine_belief}' view about vaccines.")
 
 
-EDUCATION_LEVELS = ["high school", "college", "bachelor's degree", "master's degree", "PhD"]
+EDUCATION_LEVELS = ["no education","high school", "college", "bachelor", "master", "PhD"]
 PERSONALITIES = ["skeptical", "open-minded", "anxious", "indifferent", "cautious"]
 VACCINE_BELIEFS = ["pro-vaccine", "neutral", "anti-vaccine"]
 SOCIO_STATUSES = ["low-income", "middle-income", "high-income"]
-AGE_GROUPS = ["young adult", "middle-aged", "senior"]
+AGE_GROUPS = ["young adult", "middle-aged", "old_aged"]
 
 
 def generate_random_agent(name="Agent X"):
