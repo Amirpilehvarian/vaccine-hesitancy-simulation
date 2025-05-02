@@ -3,9 +3,11 @@
 import streamlit as st
 import pandas as pd
 import os
+import sys
 import time
 import random
 from openai import OpenAI
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 from utils.data_utils import load_dataframe
 from agents.agent_profiles import AgentProfile, generate_random_agent
 import plotly.express as px
@@ -23,9 +25,15 @@ os.makedirs("data", exist_ok=True)
 
 st.markdown("<h1 style='color:#2c6df3'>💉 Vaccine Hesitancy Simulator</h1>", unsafe_allow_html=True)
 
-tabs = st.tabs(["🧪 Simulation", "📊 Insights", "⚙️ Auto Mode", "📈 Fake vs Real", "🌟 Emotion & Celebrity", "👥 Team"])
+tabs = st.tabs(["🧪 Simulation",
+    "📊 Insights",
+    "⚙️ Auto Mode",
+    "📈 Fake vs Real",
+    "🌟 Emotion & Celebrity",
+    "🗣️ Chatbot",
+    "👥 Team",])
 
-tab1, tab2, tab3, tab4, tab5, tab6 = tabs
+tab1, tab2, tab3, tab4, tab5, tab6, tab7 = tabs
 
 @st.cache_data
 def load_tweets():
@@ -131,7 +139,7 @@ with tab3:
     st.subheader("⚙️ Auto Simulation")
     auto_start = st.button("▶ Start Auto Simulation")
     auto_stop = st.button("⏹ End and Show Insights")
-    batch = st.slider("Batch Size", 10, 100, 50, step=10)
+    batch = st.slider("Batch Size", 10, 1000, 50, step=10)
     tcount = st.slider("Tweets per Agent", 5, 30, 10)
     pct = st.slider("% Real Tweets", 0, 100, 70, step=10)
 
@@ -200,15 +208,26 @@ with tab4:
                         y += 1
                     log_fvr(agent, label, pct)
             records.append({"Real %": pct, "Acceptance Rate": y / reps})
-        st.plotly_chart(px.line(pd.DataFrame(records), x="Real %", y="Acceptance Rate", markers=True))
+        if os.path.exists(fvr_log_path):
+            df_log = pd.read_csv(fvr_log_path, on_bad_lines="skip")
+            df_log = df_log[df_log["response"].isin(["Yes", "No"])]
+            summary = (
+                df_log.groupby("real_pct")["response"]
+                .apply(lambda x: (x == "Yes").mean())
+                .reset_index(name="Acceptance Rate")
+            )
+            st.plotly_chart(px.line(summary, x="real_pct", y="Acceptance Rate", markers=True,
+                                    title="Overall Acceptance Rate vs. % Real News"), use_container_width=True)
+        else:
+            st.info("No logged results yet. Run an analysis.")
 
 # === EMOTION & CELEBRITY TAB ===
 with tab5:
     st.subheader("🌟 Emotion & Celebrity Influence")
     col1, col2 = st.columns(2)
     with col1:
-        age = st.selectbox("Age Group", ["young adult", "middle-aged", "senior"], key="emo_age")
-        edu = st.selectbox("Education", ["no education", "high school", "bachelor's", "master's", "PhD"], key="emo_edu")
+        age = st.selectbox("Age Group", ["young adult", "middle-aged", "old_aged"], key="emo_age")
+        edu = st.selectbox("Education", ["no education", "high school", "bachelor", "master", "PhD"], key="emo_edu")
         inc = st.selectbox("Income", ["low", "middle", "high"], key="emo_inc")
     with col2:
         bel = st.selectbox("Belief", ["anti-vaccine", "neutral", "pro-vaccine"], key="emo_bel")
@@ -231,8 +250,12 @@ with tab5:
         response = simulate_agent_final_response(agent, context)
         label = parse_binary_response(response)
         st.markdown(f"<h4>{label} — {response}</h4>", unsafe_allow_html=True)
-        if emo: log_emotion_celebrity(agent, label, "emotional")
-        if celeb: log_emotion_celebrity(agent, label, "celebrity")
+        if emo:
+            log_emotion_celebrity(agent, label, "emotional")
+        elif celeb:
+            log_emotion_celebrity(agent, label, "celebrity")
+        else:
+            log_emotion_celebrity(agent, label, "none")
 
     if os.path.exists(emo_log_path):
         df = pd.read_csv(emo_log_path)
@@ -243,8 +266,83 @@ with tab5:
                 agg.columns = ["Response", "Fraction"]
                 st.plotly_chart(px.pie(agg, values='Fraction', names='Response', title=f"Effect of {key.title()} Messaging"))
 
-# === TEAM TAB ===
+
+
+
 with tab6:
+    st.title("🗣️ Persuasive Chatbot Agent")
+
+    if "chat_history" not in st.session_state:
+        st.session_state.chat_history = []
+    if "user_profile" not in st.session_state:
+        st.session_state.user_profile = {}
+
+    # Step 1: Pre-chat user profile
+    with st.form("user_profile_form"):
+        st.subheader("🧬 Tell us a bit about yourself")
+        col1, col2 = st.columns(2)
+        with col1:
+            age = st.selectbox("Your age group", ["young adult", "middle-aged", "senior"])
+            edu = st.selectbox("Your education level", ["no education", "high school", "college", "bachelor", "master", "PhD"])
+            inc = st.selectbox("Your income level", ["low-income", "middle-income", "high-income"])
+        with col2:
+            belief = st.selectbox("Your belief about vaccines", ["anti-vaccine", "neutral", "pro-vaccine"])
+            pers = st.selectbox("Your personality", ["anxious", "skeptical", "indifferent", "cautious", "open-minded"])
+            concern = st.text_area("What worries you about the vaccine?")
+        submit = st.form_submit_button("Start Chat")
+
+    if submit:
+        st.session_state.user_profile = {
+            "age": age,
+            "edu": edu,
+            "income": inc,
+            "belief": belief,
+            "personality": pers,
+            "concern": concern
+        }
+        st.session_state.chat_history = []
+
+    # Step 2: Generate system prompt if ready
+    if st.session_state.user_profile:
+        profile = st.session_state.user_profile
+        system_prompt = (
+            f"You are a warm, empathetic vaccine expert who speaks in an understanding tone. "
+            f"You're speaking to a {profile['personality']} person who is {profile['age']}, with {profile['edu']} education, "
+            f"from a {profile['income']} background, and they currently feel '{profile['belief']}' about vaccines."
+        )
+        if profile["concern"]:
+            system_prompt += f" Their concern is: {profile['concern']}."
+        system_prompt += " Your job is to have a helpful and honest conversation, using emotional stories or examples of celebrities who vaccinated, and gently persuade them to consider vaccination."
+
+        # Step 3: Chat Interface
+        st.divider()
+        st.markdown("### 🤖 Chat with the Vaccine Assistant")
+        for entry in st.session_state.chat_history:
+            st.chat_message(entry["role"]).markdown(entry["content"])
+
+        user_input = st.chat_input("Your message...")
+        if user_input:
+            st.session_state.chat_history.append({"role": "user", "content": user_input})
+
+            messages = [
+                {"role": "system", "content": system_prompt}
+            ] + st.session_state.chat_history[-10:]
+
+            try:
+                response = client.chat.completions.create(
+                    model="gpt-4o",
+                    messages=messages
+                )
+                reply = response.choices[0].message.content.strip()
+            except Exception as e:
+                reply = f"⚠️ Error: {e}"
+
+            st.session_state.chat_history.append({"role": "assistant", "content": reply})
+            st.chat_message("assistant").markdown(reply)
+
+
+# === TEAM TAB ===
+with tab7:
     st.markdown("""
     ### 👥 Team Members
     - Amir Pilehvarian (Lead Developer)
